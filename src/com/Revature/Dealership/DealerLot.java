@@ -39,11 +39,11 @@ public class DealerLot implements Serializable
 		return Lotcars;
 	}
 
-	public void Soldcar(Cars car, double offer, Customer C, List<Customer> customers)
+	public void Soldcar(Cars car, double offer, Customer C)
 	{
 		BoughtCars.put(car, offer);
-		customers.get(customers.indexOf(C)).AddOwnedCar(car);
-		customers.get(customers.indexOf(C)).addPayments(offer, car);
+		C.AddOwnedCar(car);
+		C.addPayments(offer, car);
 		Lotcars.remove(car);
 		CarList.remove(car);
 		car.getOffers().clear();

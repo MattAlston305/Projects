@@ -21,8 +21,8 @@ public abstract class EmployeePermissions
 	}
 	public abstract void addCar(Cars car);
 	public abstract void removeCar(Cars car);
-	public abstract void acceptOffers(Cars car, double offer, Customer consumer,List<Customer> consumers);
+	public abstract void acceptOffers(Cars car, double offer, Customer consumer);
 	public abstract void rejectOffers(Cars car, Customer C);
-	public abstract Map<Customer, Map<Cars, List<Double>>> viewPayments();
+	public abstract void viewPayments();
 	public abstract void ViewLotinfo();
 }

@@ -48,9 +48,9 @@ public class Employee extends EmployeePermissions implements Serializable
 	}
 
 	@Override
-	public void acceptOffers(Cars car, double offer, Customer consumer, List<Customer> consumers) 
+	public void acceptOffers(Cars car, double offer, Customer consumer) 
 	{
-		is.getLot().Soldcar(car, offer, consumer, consumers);
+		is.getLot().Soldcar(car, offer, consumer);
 	}
 
 	@Override
@@ -60,9 +60,14 @@ public class Employee extends EmployeePermissions implements Serializable
 	}
 
 	@Override
-	public Map<Customer, Map<Cars, List<Double>>> viewPayments()
+	public void viewPayments()
 	{
-		return payments;
+		int i = 0;
+		for(Customer c : is.getCList().getCustomers())
+		{
+			System.out.println(i + ". " + c.getUsername());
+			c.ViewPayments();
+		}
 	}
 
 	@Override
@@ -77,11 +82,15 @@ public class Employee extends EmployeePermissions implements Serializable
 			int i =0;
 			for(Cars C : is.getLot().ViewCarsE())
 			{
-				System.out.println((i+1) +  ". " + is.getLot().ViewCarsE().get(i).getCarType() 
-									+" "+ is.getLot().ViewCarLotE().get(C).toString());
+				System.out.print((i+1) +  ". " + is.getLot().ViewCarsE().get(i).getCarType()); 
+				for(Customer c:is.getCList().getCustomers())
+				{
+					System.out.print(" "+ is.getLot().ViewCarsE().get(i).getOffers().get(c) + " ");
+				}
+				System.out.println();
+				
 				i++;
 			}
 		}
 	}
-	
 }

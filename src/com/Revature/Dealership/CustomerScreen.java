@@ -6,6 +6,8 @@ import java.io.ObjectOutputStream;
 import java.util.List;
 import java.util.Scanner;
 
+import com.Revature.DAOs.LoggingUtil;
+
 public class CustomerScreen 
 {
 	private Inventory iv;
@@ -15,18 +17,17 @@ public class CustomerScreen
 		iv = inv;
 		cs = c;
 		System.out.println("\t\t\t -------- Customer Screen --------");
-		System.out.println("Welcome " );
+		System.out.println("Welcome " + cs.getUsername());
 		customerMenu();
 	}
 	public void customerMenu()
 	{
-		
-		Customer custom;
 		System.out.println("\n\n\t\t Menu\n"
 							+ "\t\t 1. View Cars\n"
-							+ "\t\t 2. View Owned Cars\n"
-							+ "\t\t 3. View Payments\n"
-							+ "\t\t 4. Logout\n");
+							+ "\t\t 2. View Offers\n"
+							+ "\t\t 3. View Owned Cars\n"
+							+ "\t\t 4. View Payments\n"
+							+ "\t\t 5. Logout\n");
 		Scanner scand = new Scanner(System.in);
 		int choice = scand.nextInt();
 		switch(choice)
@@ -35,12 +36,14 @@ public class CustomerScreen
 				boolean valid = true;
 				do
 				{
+					LoggingUtil.info("Customer viewing cars.");
 					iv.getLot().ViewCarsC();
 					System.out.println("Do you want to make a offer on a car?");
 					scand = new Scanner(System.in);
 					String s = scand.nextLine();
 					if(s.equals("yes") || s.equals("Yes") || s.equals("y"))
 					{
+						LoggingUtil.info("Customer making offer.");
 						System.out.println("Choose the car? ");
 						scand = new Scanner(System.in);
 						int c = scand.nextInt();
@@ -65,12 +68,23 @@ public class CustomerScreen
 				while(valid);
 					break;
 			case 2:
-				cs.ViewOwnedCars();
+				for(Cars c: iv.getLot().ViewCarsE())
+				{
+					System.out.print(c.getCarType() + ": ");
+					System.out.println(c.getOffers().get(cs));
+				}
+				customerMenu();
 				break;
 			case 3:
-				System.out.println(cs.ViewPayments());
+				LoggingUtil.info("Customer viewing Their Cars.");
+				cs.ViewOwnedCars();
+				customerMenu();
 				break;
 			case 4:
+				cs.ViewPayments();
+				customerMenu();
+				break;
+			case 5:
 				System.out.println("You are loginning out");
 				LoginScreen screen = new LoginScreen(iv);
 				break;

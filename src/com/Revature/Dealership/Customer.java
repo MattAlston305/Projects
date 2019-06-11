@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.Revature.DAOs.LoggingUtil;
+
 import DealershipInterface.UserPermissions;
 
 public class Customer extends UserPermissions implements Serializable
@@ -36,6 +38,7 @@ public class Customer extends UserPermissions implements Serializable
 	@Override
 	public double makeOffer(double offer) 
 	{
+		LoggingUtil.warn("May cause Exceptions");
 		offers.add(offer);
 		return offer;
 	}
@@ -43,20 +46,37 @@ public class Customer extends UserPermissions implements Serializable
 	@Override
 	public void ViewOwnedCars() 
 	{
-
-		int i = 1;
-		for(Cars c : OwnedCars)
+		if(OwnedCars.isEmpty())
 		{
-			System.out.print(" " + i + ". ");
-			System.out.println(c.getCarType());
-			i++;
+			System.out.println("You do not own any Cars");
+		}
+		else
+		{
+			int i = 1;
+			for(Cars c : OwnedCars)
+			{
+				System.out.print(" " + i + ". ");
+				System.out.println(c.getCarType());
+				i++;
+			}
 		}
 	}
 
 	@Override
-	public Map<Cars, List<Double>> ViewPayments() 
+	public void ViewPayments() 
 	{
-		return payments;
+		if(payments.isEmpty())
+		{
+			System.out.println("You do not owe us any money");
+		}
+		else
+		{
+			int i=0;
+			for(Cars c: payments.keySet())
+			{
+				System.out.println(c.getCarType() + ": " + payments.get(c));
+			}
+		}
 	}
 	public String getPassword() {
 		return Password;
@@ -75,9 +95,13 @@ public class Customer extends UserPermissions implements Serializable
 		List<Double> payment = new ArrayList<>();
 		for(int i =0; i < 13; i++)
 		{
-			payment.add(offer/12);
+			payment.add(offer/12.0);
 		}
 		this.payments.put(c, payment);
+	}
+	public List<Double> getOffers()
+	{
+		return offers;
 	}
 		
 }

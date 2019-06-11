@@ -20,5 +20,5 @@ public abstract class UserPermissions
 	}
 	public abstract double makeOffer(double offer);
 	public abstract void ViewOwnedCars();
-	public abstract Map<Cars, List<Double>> ViewPayments();
+	public abstract void ViewPayments();
 }
