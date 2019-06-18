@@ -1,0 +1,24 @@
+2019-06-18 16:40:09 TRACE root:10 - start of program
+2019-06-18 16:40:09 INFO  root:18 - 		Welcome to revCars Dealership
+
+2019-06-18 16:40:09 INFO  root:18 - 		 1. Login
+2019-06-18 16:40:09 INFO  root:18 - 		 2. Create Account
+		 3. Exit System
+
+2019-06-18 16:40:41 TRACE root:10 - start of program
+2019-06-18 16:40:41 INFO  root:18 - 		Welcome to revCars Dealership
+
+2019-06-18 16:40:41 INFO  root:18 - 		 1. Login
+2019-06-18 16:40:41 INFO  root:18 - 		 2. Create Account
+		 3. Exit System
+
+2019-06-18 16:41:40 TRACE root:10 - start of program
+2019-06-18 16:41:40 INFO  root:18 - 		Welcome to revCars Dealership
+
+2019-06-18 16:41:40 INFO  root:18 - 		 1. Login
+2019-06-18 16:41:40 INFO  root:18 - 		 2. Create Account
+		 3. Exit System
+
+2019-06-18 16:51:44 DEBUG root:14 - Before autocommit
+2019-06-18 16:51:44 DEBUG root:14 - Before execute
+2019-06-18 16:51:44 DEBUG root:14 - After execute
