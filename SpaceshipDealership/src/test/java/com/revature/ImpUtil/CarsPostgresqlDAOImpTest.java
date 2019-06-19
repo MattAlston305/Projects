@@ -21,7 +21,7 @@ public class CarsPostgresqlDAOImpTest {
 
 	@Test
 	public void testCreateCar() {
-//		dao.createCar(car);
+	//	dao.createCar(car);
 	}
 
 	@Test

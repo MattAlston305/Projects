@@ -27,11 +27,11 @@ public class CarsPostgresqlDAOImp implements CarsDAO {
 			PreparedStatement stmt = conn.prepareStatement("insert into cars(carName) values (?)");
 			stmt.setString(1, c.getCarType());
 
-			LoggingUtil.debug("Before autocommit");
+			//LoggingUtil.debug("Before autocommit");
 			conn.setAutoCommit(false);
-			LoggingUtil.debug("Before execute");
+			//LoggingUtil.debug("Before execute");
 			stmt.execute();
-			LoggingUtil.debug("After execute");
+			//LoggingUtil.debug("After execute");
 			conn.commit();
 			conn.setAutoCommit(true);
 		}
@@ -103,7 +103,7 @@ public class CarsPostgresqlDAOImp implements CarsDAO {
 	public List<Cars> getAllCars() 
 	{
 		List<Cars> carlist = new ArrayList<Cars>();
-		String sql = "select * from cars where c_id = '0'";
+		String sql = "select * from cars;";
 		Statement stmt;
 		try
 		{
@@ -128,7 +128,7 @@ public class CarsPostgresqlDAOImp implements CarsDAO {
 	public List<Cars> getAllCarsbyCustomer(int customerID) 
 	{
 		List<Cars> carlist = new ArrayList<Cars>();
-		String sql = "select * from cars where c_id = " + customerID;
+		String sql = "select * from cars where c_id = " + "'" + customerID + "'";
 		Statement stmt;
 		try
 		{

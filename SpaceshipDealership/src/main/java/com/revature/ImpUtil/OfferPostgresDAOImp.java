@@ -51,7 +51,7 @@ public class OfferPostgresDAOImp implements OfferDAO
 	public List<Offer> getAllOffersbyCar(Cars car) 
 	{
 		List<Offer> offers = new ArrayList<Offer>();
-		String sql = "select * from offer where cr_id = " + "'"+car.getCar_Id()+"'";
+		String sql = "select * from offer where cr_id = " + "'"+car.getCar_Id()+"'" + " and status != 'Rejected';";
 		Statement stmt;
 		try
 		{
@@ -65,7 +65,6 @@ public class OfferPostgresDAOImp implements OfferDAO
 		}
 		catch(SQLException e)
 		{
-			
 			e.printStackTrace();
 			return null;
 		}
@@ -75,7 +74,7 @@ public class OfferPostgresDAOImp implements OfferDAO
 	@Override
 	public List<Offer> getAllOffersforCustomer(Customer c) {
 		List<Offer> offers = new ArrayList<Offer>();
-		String sql = "select * from offer where cu_id = " + "'" + c.getCustomer_id() + "'";
+		String sql = "select * from offer where cu_id = " + "'" + c.getCustomer_id() + "'" + " and status != 'Rejected';";
 		Statement stmt;
 		try
 		{
@@ -126,24 +125,43 @@ public class OfferPostgresDAOImp implements OfferDAO
 			conn.commit();
 			conn.setAutoCommit(true);
 		}
-		
-	catch (SQLException e) 
-	{
-		try
+		catch (SQLException e) 
 		{
-			conn.rollback();
-			LoggingUtil.error("Offer not accepted");
+			try
+			{
+				conn.rollback();
+				LoggingUtil.error("Offer not accepted");
+			}
+			catch(SQLException d)
+			{
+				d.printStackTrace();
+			}
+			e.printStackTrace();
 		}
-		catch(SQLException d)
-		{
-			d.printStackTrace();
-		}
-		e.printStackTrace();
-	}
 	}
 	
-	public void RejectOffer(int car_id, int offer_id)
+	public void RejectOffer(int car_id, int customer_id)
 	{
-		
+		try 
+		{
+			PreparedStatement stmt = conn.prepareStatement("update offer set status = 'Rejected' where cr_id = " + "'" + car_id +"'" + " and " + " cu_id = " + "'" + customer_id + "'");
+			conn.setAutoCommit(false);
+			stmt.execute();
+			conn.commit();
+			conn.setAutoCommit(true);
+		}
+		catch (SQLException e) 
+		{
+			try
+			{
+				conn.rollback();
+				LoggingUtil.error("Offer not accepted");
+			}
+			catch(SQLException d)
+			{
+				d.printStackTrace();
+			}
+			e.printStackTrace();
+		}
 	}
 }

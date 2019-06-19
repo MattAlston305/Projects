@@ -61,13 +61,19 @@ public class Customer extends UserPermissions
 	@Override
 	public void ViewPayments() 
 	{
-		
-		for(Cars c: cars.getAllCarsbyCustomer(customer_id))
+		if(cars.getAllCarsbyCustomer(customer_id).isEmpty())
 		{
-			System.out.println(c.getCar_Id() + ". " + c.getCarType() +" :"+ pays.getPaymentbyCar(c));
-			System.out.println(pays.getPaymentbyCar(c));
+			System.out.println("You do not own any of our cars currently");
 		}
-		
+		else
+		{
+			for(Cars c: cars.getAllCarsbyCustomer(customer_id))
+			{
+				System.out.println(c.getCar_Id() + ". " + c.getCarType() +" :"+ pays.getPaymentbyCar(c));
+				System.out.println(pays.getPaymentbyCar(c));
+				System.out.println(pays.getMonthlyPaymentbyCar(c));
+			}
+		}
 	}
 	public String getPassword() {
 		return Password;

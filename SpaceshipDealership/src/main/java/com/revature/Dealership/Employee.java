@@ -56,7 +56,6 @@ public class Employee extends EmployeePermissions implements Serializable
 	@Override
 	public void acceptOffers(Cars car, Customer consumer) 
 	{
-		System.out.println(consumer.getCustomer_id());
 		offer.AcceptOffer(car.getCar_Id(), consumer.getCustomer_id());
 		int payments = offer.getOfferbyCarandCustomer(car, consumer).getOffer();
 		cars.updateCarPurchase(consumer, car);
@@ -66,13 +65,18 @@ public class Employee extends EmployeePermissions implements Serializable
 	@Override
 	public void rejectOffers(Cars car, Customer C) 
 	{
-		
+		offer.RejectOffer(car.getCar_Id(), C.getCustomer_id());
 	}
 
 	@Override
 	public void viewPayments()
 	{
-		
+		int d = 1;
+		for(int p : payment.getAllPayments())
+		{
+			System.out.println(d + ". " + p);
+			d++;
+		}
 	}
 
 	@Override

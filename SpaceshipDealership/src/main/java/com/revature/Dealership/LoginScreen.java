@@ -1,8 +1,5 @@
 package com.revature.Dealership;
 
-import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import com.revature.DAOs.LoggingUtil;
@@ -18,10 +15,10 @@ public class LoginScreen implements LoginInterface
 	public LoginScreen()
 	{
 		LoggingUtil.trace("start of program");
-		LoggingUtil.info("\t\tWelcome to revCars Dealership\n");
+		LoggingUtil.info("\t\tWelcome to SmartCars Dealership\n");
 		LoggingUtil.info("\t\t 1. Login");
 		LoggingUtil.info("\t\t 2. Create Account\n"
-				+ "\t\t 3. Exit System\n");
+					+	 "\t\t 3. Exit System\n");
 		Scanner scan = new Scanner(System.in);
 		boolean valid = true;
 		int choice = scan.nextInt();

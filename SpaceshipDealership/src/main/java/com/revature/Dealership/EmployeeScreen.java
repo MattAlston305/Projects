@@ -59,9 +59,9 @@ public class EmployeeScreen
 				EmployeeMenu();
 				break;
 			case 3:
-				LoggingUtil.info("Removing car from Lot");
+				LoggingUtil.info("Removing SmartCar from Lot");
 				emp.ViewLotinfo();
-				LoggingUtil.info("Enter the car you want to remove");
+				LoggingUtil.info("Enter the SmartCar you want to remove");
 				scand = new Scanner(System.in);
 				int carnumber = scand.nextInt();
 				emp.removeCar(carnumber);
@@ -96,7 +96,30 @@ public class EmployeeScreen
 				
 				break;
 			case 5:
+				LoggingUtil.info("Rejecting an offer");
 				emp.ViewLotinfo();
+				LoggingUtil.info("Enter the carid you want to work with: ");
+				scand = new Scanner(System.in);
+				int car = scand.nextInt();
+				if(offer.getAllOffersbyCar(cars.getCarbyId(car)).isEmpty())
+				{
+					System.out.println("Car has no offers");
+					EmployeeMenu();
+				}
+				else
+				{
+					for(Offer o: offer.getAllOffersbyCar(cars.getCarbyId(car)))
+					{
+						System.out.println("Customer " + o.getCustomerid() + ": "  + customer.getCustomerbyID(o.getCustomerid()).getUsername()
+										+  "\n Offer: " + o.getOffer());
+					}
+					LoggingUtil.info("Enter the customer id of the offer you want to reject: ");
+					scand = new Scanner(System.in);
+					int cusid = scand.nextInt();
+					System.out.println(customer.getCustomerbyID(cusid).getCustomer_id());
+					emp.rejectOffers(cars.getCarbyId(car), customer.getCustomerbyID(1));
+					EmployeeMenu();
+				}
 				EmployeeMenu();
 				break;
 			case 6:

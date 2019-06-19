@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Savepoint;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.revature.DAOs.LoggingUtil;
 import com.revature.DAOs.PaymentDAO;
@@ -43,6 +45,28 @@ public class PaymentPostgresDAOImp implements PaymentDAO {
 			}
 			ex.printStackTrace();
 		}
+	}
+	public List<Integer> getAllPayments()
+	{
+		List<Integer> payments = new ArrayList<>();
+		String sql = "select * from payment";
+		Statement stmt;
+		try
+		{
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next())
+			{
+				payments.add(rs.getInt("amount"));
+			}
+			
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return payments;
+		
 	}
 
 	@Override
