@@ -1,0 +1,12 @@
+body{
+    background-color: lightslategrey;
+}
+
+.Event{
+    color: black;
+}
+
+#Ename{
+    max-width: 200px;
+}
+

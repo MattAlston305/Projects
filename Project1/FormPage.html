@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" type="text/css" href="FormPage.css">
+
+    <title>Reimbursement Form</title>
+  </head>
+    <body>
+          <form id="EventForm" action="FormPage" method="post">
+            <div class="Event">
+              <label for="Event Name">Event Name</label>
+              <input type="text" class="form-control" name="Ename" placeholder="Name of Event">
+            </div>
+            <div class="Event">
+              <label for="Event Time">Event Time</label>
+              <input type="text" class="form-control" name="Etime" placeholder="Time of Event">
+            </div>
+            <div class="Event">
+              <label for="Event Type">Event Type</label>
+              <select name = "EType">
+                <option value="Event Type">Event Type</option>
+                <option value="University Courses">University Course</option>
+                <option value="Seminars">Seminar</option>
+                <option value="Certification Preparation Classes">Certification Preparation Class</option>
+                <option value="Certification">Certification</option>
+                <option value="Technical Training">Technical Training</option>
+                <option value="Others">Others</option>
+              </select>
+            </div>
+            <div class="Event">
+              <label for="Event Cost">Event Cost</label>
+              <input type="text" class="form-control" name="Ecost" placeholder="Cost of Event">
+            </div>
+            <div class="Event">
+              <label for="Grading Format">Event Grading Format</label>
+              <select name="EGF">
+                <option value="percent">Percent Grade</option>
+                <option value="letter">Letter Grade</option>
+                <option value="pass/fail">Pass/Fail</option>
+              </select>
+            </div>
+            <div class="Event">
+              <label for="Event-Date">Event Date</label>
+              <input type="text" class="form-control" name="EDate" placeholder="dd/mm/yyyy">
+            </div>
+            <div class="Event">
+              <label for="Passing Grade Format">Passing Grade</label>
+              <input type="text" class="form-control" name="PGrade" placeholder="Passing Grade">
+            </div>
+            <div class="Event">
+              <label for="Event Description">Event Description</label>
+              <textarea class="form-control" name="E-Description" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+    </body>
+</html>
